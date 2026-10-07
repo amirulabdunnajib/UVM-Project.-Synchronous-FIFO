@@ -1,0 +1,62 @@
+// Fixed size: 8 locations, 16-bit data width.
+module fifo (
+    input clk,
+    input rst_n,
+    input wr_en,
+    input rd_en,
+    input [8:0] wr_data,
+    output reg [8:0] rd_data,
+
+    output rd_valid,
+
+    output full,
+    output empty
+    output overflow,
+    output underflow
+);
+
+
+// Internal state
+    wire [3:0] wptr;
+    wire [3:0] rptr;
+    wire [3:0] count;
+
+
+// Status Generation Logic (Full/Empty)
+    assign full  = (wptr == 4'b1111) && (count == 4'b1000); // Full when write pointer wraps around and count is 8
+    assign empty = (count == 4'b0000); // Empty when count is
+
+    // Memory is fixed to 6 locations of 8 bits each.
+    reg [7:0] fifo[15:0];
+
+    // Write logic: updates the write pointer and writes to memory
+    always @(posedge clk) begin
+      if (!rst_n) begin
+            wptr <= 0;
+            full <= 0;
+            count <= 0;
+        end else if (wr_en && (!full || rd_en)) begin
+            fifo[wptr] <= wr_data;
+            wptr <= wptr + 1;
+            count <= count + 1;
+        end 
+    end
+
+    // Read logic: updates the read pointer and reads from memory
+    always @(posedge clk) begin
+      if (!rst_n) begin
+            rptr <= 0;
+            empty <= 0;
+            count <= 0;
+        end else if (rd_en && !empty) begin
+            rd_data <= fifo[rptr];
+            rptr <= rptr + 1;
+            count <= count - 1;
+        end
+    end
+endmodule
+
+
+    
+
+

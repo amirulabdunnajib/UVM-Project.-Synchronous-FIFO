@@ -1,0 +1,117 @@
+[2026-10-08 10:10:42 UTC] vcs -full64 -licqueue '-timescale=1ns/1ns' '+vcs+flush+all' '+warn=all' '-sverilog' design.sv testbench.sv  && ./simv +vcs+lic+wait  
+                         Chronologic VCS (TM)
+       Version X-2025.06-SP1_Full64 -- Thu Oct  8 06:10:44 2026
+
+                    Copyright (c) 1991 - 2025 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+
+Parsing design file 'design.sv'
+Parsing design file 'testbench.sv'
+Top Level Modules:
+       tb_t5
+TimeScale is 1 ns / 1 ns
+Starting vcs inline pass...
+1 module and 0 UDP read.
+recompiling module tb_t5
+rm -f _cuarc*.so _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
+if [ -x ../simv ]; then chmod a-x ../simv; fi
+g++  -o ../simv      -rdynamic  -Wl,-rpath='$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir -Wl,-rpath=/apps/vcsmx/vcs/X-2025.06-SP1/linux64/lib -L/apps/vcsmx/vcs/X-2025.06-SP1/linux64/lib  -Wl,-rpath-link=./   objs/amcQw_d.o  _287_archive_1.so  SIM_l.o       rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o            -lvirsim -lerrorinf -lsnpsmalloc -lvfs      -lvcsnew -ldistsimclient -lsimprofile -luclinative /apps/vcsmx/vcs/X-2025.06-SP1/linux64/lib/vcs_tls.o   -Wl,-whole-archive  -lvcsucli    -Wl,-no-whole-archive          /apps/vcsmx/vcs/X-2025.06-SP1/linux64/lib/vcs_save_restore_new.o -ldl  -lc -lm -lpthread -ldl 
+../simv up to date
+CPU time: .676 seconds to compile + .552 seconds to elab + .611 seconds to link
+Chronologic VCS simulator copyright 1991-2025
+Contains Synopsys proprietary information.
+Compiler version X-2025.06-SP1_Full64; Runtime version X-2025.06-SP1_Full64;  Oct  8 06:10 2026
+
+--- Step 1: fill the FIFO with 16 distinct values ---
+t=  36 | fill         | in: wr=1 rd=0 wdata=10 | out: count= 1 full=0 empty=0 rd_valid=0 rd_data=00 ovf=0 unf=0
+t=  46 | fill         | in: wr=1 rd=0 wdata=11 | out: count= 2 full=0 empty=0 rd_valid=0 rd_data=00 ovf=0 unf=0
+t=  56 | fill         | in: wr=1 rd=0 wdata=12 | out: count= 3 full=0 empty=0 rd_valid=0 rd_data=00 ovf=0 unf=0
+t=  66 | fill         | in: wr=1 rd=0 wdata=13 | out: count= 4 full=0 empty=0 rd_valid=0 rd_data=00 ovf=0 unf=0
+t=  76 | fill         | in: wr=1 rd=0 wdata=14 | out: count= 5 full=0 empty=0 rd_valid=0 rd_data=00 ovf=0 unf=0
+t=  86 | fill         | in: wr=1 rd=0 wdata=15 | out: count= 6 full=0 empty=0 rd_valid=0 rd_data=00 ovf=0 unf=0
+t=  96 | fill         | in: wr=1 rd=0 wdata=16 | out: count= 7 full=0 empty=0 rd_valid=0 rd_data=00 ovf=0 unf=0
+t= 106 | fill         | in: wr=1 rd=0 wdata=17 | out: count= 8 full=0 empty=0 rd_valid=0 rd_data=00 ovf=0 unf=0
+t= 116 | fill         | in: wr=1 rd=0 wdata=18 | out: count= 9 full=0 empty=0 rd_valid=0 rd_data=00 ovf=0 unf=0
+t= 126 | fill         | in: wr=1 rd=0 wdata=19 | out: count=10 full=0 empty=0 rd_valid=0 rd_data=00 ovf=0 unf=0
+t= 136 | fill         | in: wr=1 rd=0 wdata=1a | out: count=11 full=0 empty=0 rd_valid=0 rd_data=00 ovf=0 unf=0
+t= 146 | fill         | in: wr=1 rd=0 wdata=1b | out: count=12 full=0 empty=0 rd_valid=0 rd_data=00 ovf=0 unf=0
+t= 156 | fill         | in: wr=1 rd=0 wdata=1c | out: count=13 full=0 empty=0 rd_valid=0 rd_data=00 ovf=0 unf=0
+t= 166 | fill         | in: wr=1 rd=0 wdata=1d | out: count=14 full=0 empty=0 rd_valid=0 rd_data=00 ovf=0 unf=0
+t= 176 | fill         | in: wr=1 rd=0 wdata=1e | out: count=15 full=0 empty=0 rd_valid=0 rd_data=00 ovf=0 unf=0
+t= 186 | fill         | in: wr=1 rd=0 wdata=1f | out: count=16 full=1 empty=0 rd_valid=0 rd_data=00 ovf=0 unf=0
+
+--- Step 2: FULL, write AA and read in the same cycle ---
+t= 196 | full+wr+rd   | in: wr=1 rd=1 wdata=aa | out: count=15 full=0 empty=0 rd_valid=1 rd_data=10 ovf=0 unf=0
+      FAIL [full+wr+rd] count = 0f, expected 10  (t=196)
+      FAIL [full+wr+rd] full = 00, expected 01  (t=196)
+
+--- Step 3: two idle cycles (state must be stable) ---
+t= 206 | idle         | in: wr=0 rd=0 wdata=55 | out: count=15 full=0 empty=0 rd_valid=0 rd_data=10 ovf=0 unf=0
+      FAIL [idle] count = 0f, expected 10  (t=206)
+      FAIL [idle] full = 00, expected 01  (t=206)
+t= 216 | idle         | in: wr=0 rd=0 wdata=55 | out: count=15 full=0 empty=0 rd_valid=0 rd_data=10 ovf=0 unf=0
+      FAIL [idle] count = 0f, expected 10  (t=216)
+      FAIL [idle] full = 00, expected 01  (t=216)
+
+--- Step 4: drain, expect D1..D15 then AA ---
+t= 226 | drain        | in: wr=0 rd=1 wdata=55 | out: count=14 full=0 empty=0 rd_valid=1 rd_data=11 ovf=0 unf=0
+      FAIL [drain] count = 0e, expected 0f  (t=226)
+t= 236 | drain        | in: wr=0 rd=1 wdata=55 | out: count=13 full=0 empty=0 rd_valid=1 rd_data=12 ovf=0 unf=0
+      FAIL [drain] count = 0d, expected 0e  (t=236)
+t= 246 | drain        | in: wr=0 rd=1 wdata=55 | out: count=12 full=0 empty=0 rd_valid=1 rd_data=13 ovf=0 unf=0
+      FAIL [drain] count = 0c, expected 0d  (t=246)
+t= 256 | drain        | in: wr=0 rd=1 wdata=55 | out: count=11 full=0 empty=0 rd_valid=1 rd_data=14 ovf=0 unf=0
+      FAIL [drain] count = 0b, expected 0c  (t=256)
+t= 266 | drain        | in: wr=0 rd=1 wdata=55 | out: count=10 full=0 empty=0 rd_valid=1 rd_data=15 ovf=0 unf=0
+      FAIL [drain] count = 0a, expected 0b  (t=266)
+t= 276 | drain        | in: wr=0 rd=1 wdata=55 | out: count= 9 full=0 empty=0 rd_valid=1 rd_data=16 ovf=0 unf=0
+      FAIL [drain] count = 09, expected 0a  (t=276)
+t= 286 | drain        | in: wr=0 rd=1 wdata=55 | out: count= 8 full=0 empty=0 rd_valid=1 rd_data=17 ovf=0 unf=0
+      FAIL [drain] count = 08, expected 09  (t=286)
+t= 296 | drain        | in: wr=0 rd=1 wdata=55 | out: count= 7 full=0 empty=0 rd_valid=1 rd_data=18 ovf=0 unf=0
+      FAIL [drain] count = 07, expected 08  (t=296)
+t= 306 | drain        | in: wr=0 rd=1 wdata=55 | out: count= 6 full=0 empty=0 rd_valid=1 rd_data=19 ovf=0 unf=0
+      FAIL [drain] count = 06, expected 07  (t=306)
+t= 316 | drain        | in: wr=0 rd=1 wdata=55 | out: count= 5 full=0 empty=0 rd_valid=1 rd_data=1a ovf=0 unf=0
+      FAIL [drain] count = 05, expected 06  (t=316)
+t= 326 | drain        | in: wr=0 rd=1 wdata=55 | out: count= 4 full=0 empty=0 rd_valid=1 rd_data=1b ovf=0 unf=0
+      FAIL [drain] count = 04, expected 05  (t=326)
+t= 336 | drain        | in: wr=0 rd=1 wdata=55 | out: count= 3 full=0 empty=0 rd_valid=1 rd_data=1c ovf=0 unf=0
+      FAIL [drain] count = 03, expected 04  (t=336)
+t= 346 | drain        | in: wr=0 rd=1 wdata=55 | out: count= 2 full=0 empty=0 rd_valid=1 rd_data=1d ovf=0 unf=0
+      FAIL [drain] count = 02, expected 03  (t=346)
+t= 356 | drain        | in: wr=0 rd=1 wdata=55 | out: count= 1 full=0 empty=0 rd_valid=1 rd_data=1e ovf=0 unf=0
+      FAIL [drain] count = 01, expected 02  (t=356)
+t= 366 | drain        | in: wr=0 rd=1 wdata=55 | out: count= 0 full=0 empty=1 rd_valid=1 rd_data=1f ovf=0 unf=0
+      FAIL [drain] count = 00, expected 01  (t=366)
+t= 376 | drain        | in: wr=0 rd=1 wdata=55 | out: count= 0 full=0 empty=1 rd_valid=0 rd_data=10 ovf=0 unf=1
+      FAIL [drain] rd_data (last = AA) = 10, expected aa  (t=376)
+      FAIL [drain] rd_valid = 00, expected 01  (t=376)
+t= 386 | after drain  | in: wr=0 rd=0 wdata=55 | out: count= 0 full=0 empty=1 rd_valid=0 rd_data=10 ovf=0 unf=0
+
+=================================================
+T5 FAILED: 23 error(s)
+=================================================
+$finish called from file "testbench.sv", line 129.
+$finish at simulation time                  386
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 386 ns
+CPU Time:      0.570 seconds;       Data structure size:   0.0Mb
+Thu Oct  8 06:10:46 2026
+Finding VCD file...
+./dump.vcd
+[2026-10-08 10:10:47 UTC] Opening EPWave...
+Done

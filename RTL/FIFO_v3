@@ -1,0 +1,71 @@
+// Fixed size: 16 locations, 8-bit data width.
+module fifo (
+    input clk,
+    input rst_n,
+    input wr_en,
+    input rd_en,
+    input [7:0] wr_data,
+    output reg [7:0] rd_data,
+
+    output rd_valid,
+
+    output full,
+    output empty,
+    output overflow,
+    output underflow
+);
+
+    // Internal state
+    reg [3:0] wptr;
+    reg [3:0] rptr;
+    reg [4:0] count;
+
+    wire write_accepted;
+    wire read_accepted;
+
+    assign write_accepted = wr_en && (!full || rd_en);
+    assign read_accepted  = rd_en && !empty;
+
+    // Memory is fixed to 16 locations of 8 bits each.
+    reg [7:0] mem_fifo[15:0];
+
+    // Write logic
+    always @(posedge clk) begin
+       if (write_accepted) mem_fifo[wptr] <= wr_data;
+    end
+
+    // read and write
+    always @(posedge clk or negedge rst_n) begin
+      if (!rst_n) begin  
+        wptr <= 0;
+        count <= 0;
+        rptr <= 0;
+        rd_data <= 0;
+      end else begin
+      if (read_accepted) begin
+        rptr <= rptr + 1;
+        rd_data <= mem_fifo[rptr];
+     end
+     if (write_accepted) begin
+        wptr <= wptr + 1;
+     end
+     case ({write_accepted, read_accepted})
+      2'b10: count <= count + 1;
+      2'b01: count <= count - 1;
+      2'b11: count <= count; // no change in count
+      default: ;
+     endcase
+      end
+    end
+
+    // Data valid signal: indicates when read data is valid
+    assign rd_valid = (rd_data == mem_fifo[rptr]);
+
+    // Status Generation Logic (Full/Empty)
+    assign full  = (count == 5'b10000); // Full when count is 16
+    assign empty = (count == 5'b00000); // Empty when count is 0
+
+endmodule
+
+
+

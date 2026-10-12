@@ -239,6 +239,10 @@ class fifo_read_empty_seq extends fifo_base_seq;
 
     `uvm_info("T7_SEQ", "Step 6: read second item", UVM_LOW)
     send_cycle(0, 1, JUNK);
+
+    `uvm_info("T7_SEQ", "Step 7: idle (end state)", UVM_LOW)
+    send_cycle(0, 0, JUNK);
+    
   endtask
 endclass
 

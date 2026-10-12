@@ -1,29 +1,31 @@
-# BUG3 — `rd_data` changes on a rejected read
+# BUG3 — `rd_data` changes on a rejected read at EMPTY
 
-## Failure
+**RTL transition:** v3 → v4  
+**Rule:** R10
 
-After the FIFO becomes empty, another read request is rejected. The specification says `rd_data` must hold its previous accepted-read value, but the faulty RTL still reloads memory whenever `rd_en` is high.
-
-## Specification
-
-**R10:** except during reset, `rd_data` updates only on an accepted read. Otherwise it holds.
-
-## Root cause
-
-Faulty:
+The v3 DUT updates read data whenever a read is requested:
 
 ```systemverilog
 if (rd_en) rd_data <= mem[rptr];
 ```
 
-Fixed:
+At EMPTY, the read is rejected, so R10 requires `rd_data` to hold its previous value. Instead, v3 can load stale/invalid memory. The v4 fix gates the update with the accepted operation:
 
 ```systemverilog
 if (read_accepted) rd_data <= mem[rptr];
 ```
 
-## Reproduction strategy
+## Directed verification evolution
 
-Fill all 16 entries with known data and drain all 16. The read pointer wraps to address 0 and `rd_data` holds the last item. Issue one extra read while empty. The faulty DUT reloads the known old value from address 0; the correct DUT holds the last read value.
+The uploaded project contains both an early T7 draft and the corrected T7. The final T7:
 
-The original BUG1 failure log also contained this symptom at the end of its drain, which is why it is retained as historical evidence here.
+1. writes and reads `5A`, establishing a known non-zero held value;
+2. performs two back-to-back reads while EMPTY;
+3. checks `rd_data` remains `5A`, `rd_valid=0`, `underflow=1`, `count=0`, and `rptr` does not move;
+4. writes/reads `A5` afterward to prove normal operation still works.
+
+The saved T7 run passes on the corrected RTL.
+
+## UVM follow-up
+
+`fifo_read_empty_seq` reproduces the read-empty behaviour. The scoreboard's `exp_rd_data` only changes on `rd_acc`, so it naturally detects a DUT that modifies data on a rejected read.

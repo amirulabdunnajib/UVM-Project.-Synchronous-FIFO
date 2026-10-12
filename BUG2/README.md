@@ -1,30 +1,23 @@
-# BUG2 — Error flags undefined during reset
+# BUG2 — Error flags are undefined during reset
 
-## Failure
+**RTL transition:** v2 → v3  
+**Rule:** R11
 
-During reset, `overflow` and `underflow` remain `X` because the reset branch does not assign them. The UVM reset test and asynchronous-reset assertion detect this immediately.
+In v2, reset initializes the pointers, occupancy, `rd_data` and `rd_valid`, but leaves `overflow` and `underflow` unassigned. They therefore appear as `X` during reset.
 
-## Specification
-
-**R11** requires `overflow = 0` and `underflow = 0` during reset.
-
-## Root cause
-
-The original reset branch resets pointers, count, `rd_data`, and `rd_valid`, but omits the two registered error flags.
-
-## Fix
-
-Add:
+The v3 fix adds:
 
 ```systemverilog
 overflow  <= 1'b0;
 underflow <= 1'b0;
 ```
 
-to the asynchronous reset branch.
+inside the reset branch.
 
-## Verification story
+## Why the original directed reset test missed it
 
-The original directed reset test is preserved because it is an important verification lesson: it checked pointers/count/data but did **not** check the two error flags, so the defect escaped that directed test. The UVM scoreboard/assertion did check them and produced eight mismatches in the preserved pre-fix run.
+The preserved T1–T4 directed reset test checks pointers, count, full/empty and `rd_data`, but it does **not** check `overflow` or `underflow`. Its saved log therefore passes even while BUG2 is present. This is a useful verification-plan lesson: a passing test is only evidence for the outputs it actually checks.
 
-`UVM/before_fix.log` shows the failure; `UVM/after_fix.log` shows the reset regression after the correction.
+## UVM detection
+
+The UVM scoreboard compares both flags and the interface contains an asynchronous-reset assertion. The pre-fix run records **8 UVM mismatches** plus assertion failures because both flags are `X`. After v3, the reset regression records **0 UVM errors**.

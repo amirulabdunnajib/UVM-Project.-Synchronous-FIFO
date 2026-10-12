@@ -1,32 +1,33 @@
-# BUG4 — Underflow suppressed for write+read at EMPTY
+# BUG4 — Underflow suppressed for EMPTY + simultaneous write/read
 
-## Failure
+**RTL transition:** v4 → v5  
+**Rules:** R6, R13
 
-When the FIFO is empty and `wr_en=1` and `rd_en=1`, the write is accepted but the read is rejected. The faulty RTL suppresses `underflow` because it additionally requires `!wr_en`.
+At EMPTY, a simultaneous write and read accepts the write but rejects the read because the decision uses the pre-edge empty state. Therefore `underflow` must assert.
 
-## Specification
-
-- **R6:** at EMPTY with both requests, write is accepted and read is rejected; no bypass occurs.
-- **R13:** `underflow` asserts after any rejected read request.
-
-Therefore EMPTY + write/read must produce `underflow = 1`.
-
-## Root cause
-
-Faulty:
+The v4 expression incorrectly depended on `!wr_en`:
 
 ```systemverilog
 underflow <= rd_en && empty && !wr_en;
 ```
 
-Correct, directly from the acceptance rule:
+That suppresses underflow when both requests are high. The final v5 fix is:
 
 ```systemverilog
-underflow <= rd_en && !read_accepted;
+underflow <= rd_en && empty;
 ```
 
-## UVM evidence
+## Coverage-driven discovery
 
-The expanded corner sequence hit the previously missing `EMPTY x write_read` cell. The preserved pre-fix regression contains exactly one UVM mismatch: underflow was 0 but expected 1. The final preserved regression contains zero UVM errors.
+The expanded corner sequence deliberately targets the 12 **level × operation** cells. The critical BUG4 stimulus is **EMPTY × write+read**. The preserved pre-fix regression reports a single scoreboard mismatch for `underflow` at that cell.
 
-This is a useful example of coverage-driven verification: filling a coverage hole exposed a real RTL bug.
+After the v5 correction, the final regression records:
+
+- 12 / 12 grid cells hit
+- reset from empty, mid and full
+- overflow and underflow pulses observed
+- 100.0% functional coverage
+- 140 cycles checked, 0 mismatches
+- 0 UVM errors
+
+The final corrected RTL is `RTL/after_fix.sv` and also `../RTL_HISTORY/fifo_dut_v5.sv`.

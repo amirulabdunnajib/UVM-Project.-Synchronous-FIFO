@@ -1,39 +1,28 @@
-# BUG1 — Write dropped during simultaneous write/read at FULL
+# BUG1 — Write dropped on FULL + simultaneous write/read
 
-## Failure
+**RTL transition:** v1 → v2  
+**Rules:** R2, R5, R8, R9
 
-With the FIFO full and both `wr_en` and `rd_en` asserted, the read succeeds but the write is rejected. `count` falls from 16 to 15 and the new item is lost.
-
-## Specification
-
-- **R2:** write acceptance is `wr_en && (!full || rd_en)`.
-- **R5:** at FULL with both requests, both operations are accepted and `count` remains 16.
-- **R8/R9:** occupancy and `full` must remain consistent with the accepted operations.
-
-## Root cause
-
-Faulty RTL:
+When the FIFO is full and both `wr_en` and `rd_en` are asserted, the original DUT used:
 
 ```systemverilog
 wire write_accepted = wr_en && !full;
 ```
 
-Fixed RTL:
+The read was accepted but the write was rejected, so occupancy fell from 16 to 15 and the new item was silently lost. The fix is:
 
 ```systemverilog
 wire write_accepted = wr_en && (!full || rd_en);
 ```
 
-## Directed verification
+## Evidence
 
-`Directed_Test/tb_bug1_full_write_read.sv` fills the FIFO with 16 distinct values, performs a simultaneous write/read while full, and then drains the FIFO. The preserved failure log is `Directed_Test/before_fix.log`.
+The directed T5 test fills the FIFO with 16 distinct values, performs `wr_en=1`, `rd_en=1`, `wr_data=AA`, and then drains the FIFO. The first failure occurs immediately: `count=15` and `full=0` instead of 16/1. The stored `AA` is also missing from the drain.
 
-## UVM verification
+Files in `Directed_Test/` preserve the original draft, final directed test, simulation log, debugging notes and formal bug report.
 
-`UVM/bug1_sequence.sv` reproduces the same boundary condition without embedding expected values in the sequence. The scoreboard is responsible for predicting queue contents and occupancy. Existing functional coverage contains the `FULL x write_read` cross cell.
+## UVM follow-up
 
-A passing post-fix UVM run is preserved as `UVM/after_fix.log`.
+`fifo_full_wr_rd_seq` recreates the same case without embedding expected values in the sequence; the queue-based scoreboard predicts the result from the spec. The relevant coverage target is **level=full × operation=write+read**.
 
-## Fix result
-
-The accepted write now replaces the item removed in the same cycle. Both pointers advance and `count` remains 16.
+The preserved UVM run after the BUG1 RTL fix still reports reset-related errors from BUG2. That is useful evidence: the R5 behaviour is fixed while verification continues to expose the next independent defect.

@@ -103,3 +103,105 @@ class fifo_full_wr_rd_seq extends fifo_base_seq;
     send_cycle(0, 0, 8'h55);                               // final idle to see the end state
   endtask
 endclass
+
+// ---------------------------------------------------------------------------
+// Full Read empty sequence = directed test T67
+// ---------------------------------------------------------------------------
+
+class fifo_read_empty_seq extends fifo_base_seq;
+  `uvm_object_utils(fifo_read_empty_seq)
+
+  function new(string name = "fifo_read_empty_seq");
+    super.new(name);
+  endfunction
+
+  task body();
+  send_reset(2);
+
+  `uvm_info("", "write 5A", UVM_LOW)
+  send_cycle(1, 0, 8'h5A);
+
+  `uvm_info("", "Read 5A", UVM_LOW)
+  send_cycle(0, 1, 8'h00);
+
+  `uvm_info("", "Read at empty ", UVM_LOW)
+  repeat(2) send_cycle(0, 1, 8'h00);
+
+  `uvm_info("", "Idle ", UVM_LOW)
+  send_cycle(0, 0, 8'h00);
+
+  `uvm_info("", "Write A5 ", UVM_LOW)
+  send_cycle(1, 0, 8'hA5);
+
+  `uvm_info("", "Read A5 ", UVM_LOW)
+  send_cycle(0, 1, 8'h00);
+  endtask
+
+endclass
+  
+  
+class fifo_corner_seq extends fifo_base_seq;
+  `uvm_object_utils(fifo_corner_seq)
+
+  localparam bit [7:0] FIRST  = 8'h5A;
+  localparam bit [7:0] SECOND = 8'hA5;
+  localparam bit [7:0] THIRD  = 8'h3C;   // written together with a read at mid-level
+  localparam bit [7:0] FOURTH = 8'h77;
+  localparam bit [7:0] OVF    = 8'hEE;   // write at full that must be ignored; must never come out
+  localparam bit [7:0] JUNK   = 8'hC3;   // on wr_data when wr_en = 0: must be ignored
+
+  function new(string name = "fifo_corner_seq");
+    super.new(name);
+  endfunction
+
+  task body();
+    send_reset(2);                                        // known starting state
+
+    `uvm_info("CORNER_SEQ", "Step 1: write+read at EMPTY (R6): write accepted, read ignored", UVM_LOW)
+    send_cycle(1, 1, FIRST);
+    `uvm_info("CORNER_SEQ", "Step 2: read once: the item must have survived", UVM_LOW)
+    send_cycle(0, 1, JUNK);
+
+    `uvm_info("CORNER_SEQ", "Step 3: write two items, then idle at MID (R8)", UVM_LOW)
+    send_cycle(1, 0, FOURTH);
+    send_cycle(1, 0, SECOND);
+    send_cycle(0, 0, JUNK);
+
+    `uvm_info("CORNER_SEQ", "Step 4: write+read at MID (R7): both accepted", UVM_LOW)
+    send_cycle(1, 1, THIRD);
+
+    `uvm_info("CORNER_SEQ", "Step 5: fill to 16 (14 more values)", UVM_LOW)
+    for (int i = 0; i < 14; i++)
+      send_cycle(1, 0, 8'(8'h10 + i));
+
+    `uvm_info("CORNER_SEQ", "Step 6: write at FULL, no read (R4): ignored, overflow pulses", UVM_LOW)
+    send_cycle(1, 0, OVF);
+    send_cycle(0, 0, JUNK);                               // the overflow pulse must end
+
+    `uvm_info("CORNER_SEQ", "Step 7: drain 16: SECOND, THIRD, 10..1D; OVF must never appear", UVM_LOW)
+    repeat (16) send_cycle(0, 1, JUNK);
+
+    `uvm_info("CORNER_SEQ", "Step 8: refill to 16, then reset while FULL (R11)", UVM_LOW)
+    for (int i = 0; i < 16; i++)
+      send_cycle(1, 0, 8'(8'h40 + i));
+    send_reset(2, 1, 0, 8'hAA);
+
+    `uvm_info("CORNER_SEQ", "Step 9: read right after reset at full: ignored, no stale data", UVM_LOW)
+    send_cycle(0, 1, JUNK);
+
+    `uvm_info("CORNER_SEQ", "Step 10: write and read back: the FIFO works after reset", UVM_LOW)
+    send_cycle(1, 0, FIRST);
+    send_cycle(0, 1, JUNK);
+
+    send_cycle(0, 0, JUNK);                               // end with an idle cycle
+  endtask
+endclass
+
+
+
+
+
+
+
+
+

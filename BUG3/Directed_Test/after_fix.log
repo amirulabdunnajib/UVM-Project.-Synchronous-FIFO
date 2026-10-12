@@ -1,0 +1,3 @@
+T7 post-fix evidence is maintained at ../../DIRECTED_TESTS/T7/simulation_after_bug3_fix.log
+
+Key result: both rejected reads at EMPTY preserve rd_data=5A, keep rptr=1, set rd_valid=0 and assert underflow=1. T7 PASSED.

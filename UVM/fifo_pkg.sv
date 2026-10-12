@@ -10,6 +10,7 @@ package fifo_pkg;
   `include "fifo_monitor.sv"
   `include "fifo_scoreboard.sv"
   `include "fifo_agent.sv"
+  `include "coverage.sv"
   `include "fifo_env.sv"
   `include "fifo_tests.sv"
 endpackage

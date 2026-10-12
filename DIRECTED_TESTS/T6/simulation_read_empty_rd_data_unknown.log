@@ -1,0 +1,9 @@
+[2026-10-10 09:17:33 UTC] Synopsys VCS run
+Top Level Modules: tb_t5
+TimeScale is 1 ns / 1 ns
+t=  26 | Read enable, trigger underflow | in: wr=0 rd=1 wdata=00 | out: count= 0 full=0 empty=1 rd_valid=0 rd_data=xx ovf=0 unf=1
+
+=================================================
+T5 PASSED
+=================================================
+Simulation time: 26 ns

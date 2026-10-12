@@ -1,0 +1,15 @@
+[2026-10-10 14:39:36 UTC] Synopsys VCS run
+Top Level Modules: tb_t7
+TimeScale is 1 ns / 1 ns
+t=  36 | Write 5A                           | in: wr=1 rd=0 wdata=5a | out: count= 1 wptr=1 rptr=0 full=0 empty=0 rd_valid=0 rd_data=00 ovf=0 unf=0
+t=  46 | Read 5A                            | in: wr=0 rd=1 wdata=5a | out: count= 0 wptr=1 rptr=1 full=0 empty=1 rd_valid=1 rd_data=5a ovf=0 unf=0
+t=  56 | Read at empty #1                   | in: wr=0 rd=1 wdata=5a | out: count= 0 wptr=1 rptr=1 full=0 empty=1 rd_valid=0 rd_data=5a ovf=0 unf=1
+t=  66 | Read at empty #2                   | in: wr=0 rd=1 wdata=5a | out: count= 0 wptr=1 rptr=1 full=0 empty=1 rd_valid=0 rd_data=5a ovf=0 unf=1
+t=  76 | Idle                               | in: wr=0 rd=0 wdata=5a | out: count= 0 wptr=1 rptr=1 full=0 empty=1 rd_valid=0 rd_data=5a ovf=0 unf=0
+t=  86 | Write A5                           | in: wr=1 rd=0 wdata=a5 | out: count= 1 wptr=2 rptr=1 full=0 empty=0 rd_valid=0 rd_data=5a ovf=0 unf=0
+t=  96 | Read A5                            | in: wr=0 rd=1 wdata=a5 | out: count= 0 wptr=2 rptr=2 full=0 empty=1 rd_valid=1 rd_data=a5 ovf=0 unf=0
+
+=================================================
+T7 PASSED
+=================================================
+Simulation time: 96 ns

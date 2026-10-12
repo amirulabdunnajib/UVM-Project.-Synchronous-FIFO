@@ -52,7 +52,7 @@ endinterface
 package fifo_pkg;
   import uvm_pkg::*;
 
-  // This file is included by fifo_pkg.sv, after
+// This file is included by fifo_pkg.sv, after
 // `include "uvm_macros.svh" and `import uvm_pkg::*;
 
 typedef enum bit {CYCLE_OP = 1'b0, RESET_OP = 1'b1} fifo_kind_e;
@@ -96,7 +96,7 @@ class fifo_item extends uvm_sequence_item;
   endfunction
 endclass
 
-  // This file is included by fifo_pkg.sv, after fifo_item.sv.
+// This file is included by fifo_pkg.sv, after fifo_item.sv.
 //
 // A sequence says WHAT to do, cycle by cycle. It contains NO expected values:
 // the checking (D0 comes out, count stays 16, AA comes out last) belongs to the
@@ -202,7 +202,112 @@ class fifo_full_wr_rd_seq extends fifo_base_seq;
   endtask
 endclass
 
-  // DRIVER: turns a transaction (fifo_item) into pin wiggles on the interface.
+// ---------------------------------------------------------------------------
+// Read-at-empty sequence = directed test T7
+// Rules: R3 (ignored read), R10 (rd_data holds), R12 (rd_valid), R13 (underflow)
+// Goal: ignored reads at empty must not move the read pointer or count, must not
+// change rd_data, and the FIFO must still work afterwards.
+// ---------------------------------------------------------------------------
+class fifo_read_empty_seq extends fifo_base_seq;
+  `uvm_object_utils(fifo_read_empty_seq)
+
+  localparam bit [7:0] FIRST  = 8'h5A;   // first item, also the value rd_data must hold
+  localparam bit [7:0] SECOND = 8'hA5;   // written after the ignored reads
+  localparam bit [7:0] JUNK   = 8'hC3;   // on wr_data when wr_en = 0: must be ignored
+
+  function new(string name = "fifo_read_empty_seq");
+    super.new(name);
+  endfunction
+
+  task body();
+    send_reset(2);                                        // known starting state
+
+    `uvm_info("T7_SEQ", "Step 1: write first item", UVM_LOW)
+    send_cycle(1, 0, FIRST);
+
+    `uvm_info("T7_SEQ", "Step 2: read it back (accepted read)", UVM_LOW)
+    send_cycle(0, 1, JUNK);
+
+    `uvm_info("T7_SEQ", "Step 3: two reads at empty, back to back (ignored)", UVM_LOW)
+    repeat (2) send_cycle(0, 1, JUNK);
+
+    `uvm_info("T7_SEQ", "Step 4: idle (the underflow pulse must end)", UVM_LOW)
+    send_cycle(0, 0, JUNK);
+
+    `uvm_info("T7_SEQ", "Step 5: write second item (FIFO must still work)", UVM_LOW)
+    send_cycle(1, 0, SECOND);
+
+    `uvm_info("T7_SEQ", "Step 6: read second item", UVM_LOW)
+    send_cycle(0, 1, JUNK);
+
+    `uvm_info("T7_SEQ", "Step 7: idle (end state)", UVM_LOW)
+    send_cycle(0, 0, JUNK);
+    
+  endtask
+endclass
+
+// ---------------------------------------------------------------------------
+// Full fifo_corner_seq. to get 12/12 cells coverage
+// ---------------------------------------------------------------------------
+
+class fifo_corner_seq extends fifo_base_seq;
+  `uvm_object_utils(fifo_corner_seq)
+
+  localparam bit [7:0] FIRST  = 8'h5A;
+  localparam bit [7:0] SECOND = 8'hA5;
+  localparam bit [7:0] THIRD  = 8'h3C;   // written together with a read at mid-level
+  localparam bit [7:0] FOURTH = 8'h77;
+  localparam bit [7:0] OVF    = 8'hEE;   // write at full that must be ignored; must never come out
+  localparam bit [7:0] JUNK   = 8'hC3;   // on wr_data when wr_en = 0: must be ignored
+
+  function new(string name = "fifo_corner_seq");
+    super.new(name);
+  endfunction
+
+  task body();
+    send_reset(2);                                        // known starting state
+
+    `uvm_info("CORNER_SEQ", "Step 1: write+read at EMPTY (R6): write accepted, read ignored", UVM_LOW)
+    send_cycle(1, 1, FIRST);
+    `uvm_info("CORNER_SEQ", "Step 2: read once: the item must have survived", UVM_LOW)
+    send_cycle(0, 1, JUNK);
+
+    `uvm_info("CORNER_SEQ", "Step 3: write two items, then idle at MID (R8)", UVM_LOW)
+    send_cycle(1, 0, FOURTH);
+    send_cycle(1, 0, SECOND);
+    send_cycle(0, 0, JUNK);
+
+    `uvm_info("CORNER_SEQ", "Step 4: write+read at MID (R7): both accepted", UVM_LOW)
+    send_cycle(1, 1, THIRD);
+
+    `uvm_info("CORNER_SEQ", "Step 5: fill to 16 (14 more values)", UVM_LOW)
+    for (int i = 0; i < 14; i++)
+      send_cycle(1, 0, 8'(8'h10 + i));
+
+    `uvm_info("CORNER_SEQ", "Step 6: write at FULL, no read (R4): ignored, overflow pulses", UVM_LOW)
+    send_cycle(1, 0, OVF);
+    send_cycle(0, 0, JUNK);                               // the overflow pulse must end
+
+    `uvm_info("CORNER_SEQ", "Step 7: drain 16: SECOND, THIRD, 10..1D; OVF must never appear", UVM_LOW)
+    repeat (16) send_cycle(0, 1, JUNK);
+
+    `uvm_info("CORNER_SEQ", "Step 8: refill to 16, then reset while FULL (R11)", UVM_LOW)
+    for (int i = 0; i < 16; i++)
+      send_cycle(1, 0, 8'(8'h40 + i));
+    send_reset(2, 1, 0, 8'hAA);
+
+    `uvm_info("CORNER_SEQ", "Step 9: read right after reset at full: ignored, no stale data", UVM_LOW)
+    send_cycle(0, 1, JUNK);
+
+    `uvm_info("CORNER_SEQ", "Step 10: write and read back: the FIFO works after reset", UVM_LOW)
+    send_cycle(1, 0, FIRST);
+    send_cycle(0, 1, JUNK);
+
+    send_cycle(0, 0, JUNK);                               // end with an idle cycle
+  endtask
+endclass
+
+// DRIVER: turns a transaction (fifo_item) into pin wiggles on the interface.
 // It decides HOW and WHEN. The sequence decides WHAT.
 class fifo_driver extends uvm_driver #(fifo_item);
   `uvm_component_utils(fifo_driver)
@@ -262,7 +367,7 @@ class fifo_driver extends uvm_driver #(fifo_item);
   endtask
 endclass
 
-  // MONITOR: watches the pins and reports what happened, once per clock cycle.
+// MONITOR: watches the pins and reports what happened, once per clock cycle.
 // It never drives anything. Same job as the "@(posedge clk); #1; show(...)" in the directed tests.
 class fifo_monitor extends uvm_monitor;
   `uvm_component_utils(fifo_monitor)
@@ -303,7 +408,7 @@ class fifo_monitor extends uvm_monitor;
   endtask
 endclass
 
-  // SCOREBOARD: decides whether the DUT behaved correctly.
+// SCOREBOARD: decides whether the DUT behaved correctly.
 // It keeps a software model of the FIFO (a queue) and, for every observed clock
 // cycle, predicts what the outputs should be from the SPEC (R1 to R13) alone.
 // All the "expected" values from the directed tests now live here, in one place.
@@ -394,7 +499,7 @@ class fifo_scoreboard extends uvm_scoreboard;
   endfunction
 endclass
 
-  // AGENT: bundles sequencer + driver + monitor for one interface.
+// AGENT: bundles sequencer + driver + monitor for one interface.
 class fifo_agent extends uvm_agent;
   `uvm_component_utils(fifo_agent)
 
@@ -419,14 +524,19 @@ class fifo_agent extends uvm_agent;
   endfunction
 endclass
 
-
 class fifo_coverage extends uvm_subscriber #(fifo_item);
   `uvm_component_utils(fifo_coverage)
 
   fifo_item tr;
-  bit prev_full   = 0;
-  bit prev_empty  = 1;                   // the FIFO starts empty
-  bit prev_rst_n  = 0;                   // the system starts in reset
+  bit prev_full  = 0;
+  bit prev_empty = 1;                    // the FIFO starts empty
+  bit prev_rst_n = 0;                    // the system starts in reset
+
+  // Hit counters for the log (the same 12 cells as x_level_op)
+  int unsigned grid   [3][4];            // [level: 0 empty, 1 mid, 2 full][op: 0 idle, 1 read, 2 write, 3 wr+rd]
+  int unsigned rst_at [3];               // reset started while the FIFO was empty / mid / full
+  int unsigned ovf_pulses = 0;
+  int unsigned unf_pulses = 0;
 
   covergroup cg;
     option.comment = "Coverage for FIFO";
@@ -435,7 +545,7 @@ class fifo_coverage extends uvm_subscriber #(fifo_item);
       bins empty = {2'b01};
       bins mid   = {2'b00};
       bins full  = {2'b10};
-      illegal_bins both = {2'b11};       // full and empty together can never happen
+      illegal_bins both = {2'b11};
     }
 
     cp_op: coverpoint {tr.wr_en, tr.rd_en} iff (tr.rst_n_seen) {
@@ -451,7 +561,6 @@ class fifo_coverage extends uvm_subscriber #(fifo_item);
       illegal_bins both = {2'b11};
     }
 
-    // Level at the first cycle of a reset (reset asserted at empty / mid / full)
     cp_reset_at: coverpoint {prev_full, prev_empty} iff (!tr.rst_n_seen && prev_rst_n) {
       bins at_empty = {2'b01};
       bins at_mid   = {2'b00};
@@ -467,20 +576,58 @@ class fifo_coverage extends uvm_subscriber #(fifo_item);
   endfunction
 
   function void write(fifo_item t);
+    int lv;
     tr = t;
     cg.sample();
+
+    // Level BEFORE this cycle (saved from the previous cycle)
+    if (prev_full)       lv = 2;
+    else if (prev_empty) lv = 0;
+    else                 lv = 1;
+
+    if (t.rst_n_seen)
+      grid[lv][{t.wr_en, t.rd_en}]++;    // normal cycle: count the cell
+    else if (prev_rst_n)
+      rst_at[lv]++;                      // first cycle of a reset
+
+    if (t.overflow  === 1'b1) ovf_pulses++;
+    if (t.underflow === 1'b1) unf_pulses++;
+
     prev_full  = t.full;
     prev_empty = t.empty;
     prev_rst_n = t.rst_n_seen;
   endfunction
 
   function void report_phase(uvm_phase phase);
+    string lvn [3];
+    string opn [4];
+    string holes;
+    string tail;
+    int    total_hit;
+
+    lvn[0] = "empty"; lvn[1] = "mid  "; lvn[2] = "full ";
+    opn[0] = "idle";  opn[1] = "read";  opn[2] = "write"; opn[3] = "wr+rd";
+    total_hit = 0;
+
+    `uvm_info("COV", "---- level x operation grid (hit counts) ----", UVM_NONE)
+    `uvm_info("COV", "level |  idle  read write wr+rd", UVM_NONE)
+    for (int l = 0; l < 3; l++) begin
+      holes = "";
+      for (int o = 0; o < 4; o++) begin
+        if (grid[l][o] == 0) holes = {holes, " ", opn[o]};
+        else                 total_hit++;
+      end
+      tail = (holes == "") ? "" : {"  HOLES:", holes};
+      `uvm_info("COV", $sformatf("%s | %5d %5d %5d %5d%s", lvn[l], grid[l][0], grid[l][1], grid[l][2], grid[l][3], tail), UVM_NONE)
+    end
+    `uvm_info("COV", $sformatf("grid cells hit: %0d / 12", total_hit), UVM_NONE)
+    `uvm_info("COV", $sformatf("reset started at: empty=%0d mid=%0d full=%0d", rst_at[0], rst_at[1], rst_at[2]), UVM_NONE)
+    `uvm_info("COV", $sformatf("overflow pulses=%0d underflow pulses=%0d", ovf_pulses, unf_pulses), UVM_NONE)
     `uvm_info("COV", $sformatf("Functional coverage = %0.1f%%", cg.get_coverage()), UVM_NONE)
   endfunction
 endclass
 
-
-  // ENV: holds the agent and the checkers, and wires them together.
+// ENV: holds the agent and the checkers, and wires them together.
 class fifo_env extends uvm_env;
   `uvm_component_utils(fifo_env)
 
@@ -502,12 +649,11 @@ class fifo_env extends uvm_env;
   function void connect_phase(uvm_phase phase);
     super.connect_phase(phase);
     agt.mon.ap.connect(sb.item_export);               // monitor -> scoreboard
-    agt.mon.ap.connect(cov.analysis_export);   // monitor -> coverage
+    agt.mon.ap.connect(cov.analysis_export);          // monitor -> coverage
   endfunction
 endclass
 
-
-  // TESTS: a test builds the env and decides which sequence to run.
+// TESTS: a test builds the env and decides which sequence to run.
 // Pick one at run time with +UVM_TESTNAME=<name>.
 
 class fifo_base_test extends uvm_test;
@@ -558,6 +704,55 @@ class fifo_full_rw_test extends fifo_base_test;
     phase.raise_objection(this);
     seq = fifo_full_wr_rd_seq::type_id::create("seq");
     seq.start(env.agt.sqr);
+    #30ns;
+    phase.drop_objection(this);
+  endtask
+endclass
+
+class fifo_corner_test extends fifo_base_test;
+  `uvm_component_utils(fifo_corner_test)
+  
+  function new(string name, uvm_component parent);
+    super.new(name, parent);
+  endfunction
+
+  task run_phase(uvm_phase phase);
+    fifo_corner_seq seq;
+    phase.raise_objection(this);
+    seq = fifo_corner_seq::type_id::create("seq");
+    seq.start(env.agt.sqr);
+    #30ns;
+    phase.drop_objection(this);
+  endtask
+endclass
+
+
+// All the sequences in ONE simulation, to get one combined coverage result.
+class fifo_all_test extends fifo_base_test;
+  `uvm_component_utils(fifo_all_test)
+
+  function new(string name, uvm_component parent);
+    super.new(name, parent);
+  endfunction
+
+  task run_phase(uvm_phase phase);
+    fifo_reset_seq      rst_seq;
+    fifo_full_wr_rd_seq full_seq;
+    fifo_read_empty_seq empty_seq;   
+    fifo_corner_seq corner_seq;
+ 
+    phase.raise_objection(this);
+
+    rst_seq  = fifo_reset_seq     ::type_id::create("rst_seq");
+    full_seq = fifo_full_wr_rd_seq::type_id::create("full_seq");
+    empty_seq = fifo_read_empty_seq::type_id::create("empty_seq");
+    corner_seq = fifo_corner_seq::type_id::create("corner_seq");
+
+    rst_seq.start(env.agt.sqr);
+    full_seq.start(env.agt.sqr);
+    empty_seq.start(env.agt.sqr);
+    corner_seq.start(env.agt.sqr);
+
     #30ns;
     phase.drop_objection(this);
   endtask

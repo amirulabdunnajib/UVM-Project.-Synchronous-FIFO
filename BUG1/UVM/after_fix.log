@@ -1,0 +1,451 @@
+[2026-10-10 05:33:22 UTC] vcs -full64 -licqueue +incdir+$UVM_HOME/src $UVM_HOME/src/uvm.sv $UVM_HOME/src/dpi/uvm_dpi.cc -CFLAGS -DVCS '-timescale=1ns/1ns' '+vcs+flush+all' '+warn=all' '-sverilog' design.sv testbench.sv  && ./simv +vcs+lic+wait  
+                         Chronologic VCS (TM)
+       Version X-2025.06-SP1_Full64 -- Sat Oct 10 01:33:24 2026
+
+                    Copyright (c) 1991 - 2025 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+
+Parsing design file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm.sv'
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_pkg.sv'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_macros.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/macros/uvm_version_defines.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_macros.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/macros/uvm_global_defines.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_macros.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/macros/snps_macros.svp'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_macros.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/macros/uvm_message_defines.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_macros.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/macros/uvm_phase_defines.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_macros.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/macros/uvm_object_defines.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_macros.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/macros/uvm_printer_defines.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_macros.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/macros/uvm_tlm_defines.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_tlm_imps.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/macros/uvm_tlm_defines.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_macros.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/macros/uvm_sequence_defines.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_macros.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/macros/uvm_callback_defines.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_macros.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/macros/uvm_reg_defines.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_macros.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/macros/uvm_deprecated_defines.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_macros.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_pkg.sv'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/dpi/uvm_dpi.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/dpi/uvm_hdl.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/dpi/uvm_dpi.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/dpi/uvm_svcmd_dpi.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/dpi/uvm_dpi.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/dpi/uvm_regex.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/dpi/uvm_dpi.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_pkg.sv'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_coreservice.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_version.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_object_globals.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_misc.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_object.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_pool.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_queue.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_factory.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_registry.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_spell_chkr.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_resource.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_resource_specializations.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_resource_db.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_config_db.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_printer.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_comparer.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_packer.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_links.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_tr_database.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_tr_stream.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_recorder.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_event_callback.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_event.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_barrier.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_callback.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_macros.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_callback.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_report_message.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_report_catcher.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_report_server.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_report_handler.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_report_object.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_transaction.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_phase.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_domain.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_bottomup_phase.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_topdown_phase.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_task_phase.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_common_phases.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_runtime_phases.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_component.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_root.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_component.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_objection.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_heartbeat.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_globals.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_cmdline_processor.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_traversal.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_base.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_pkg.sv'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/dap/uvm_dap.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/dap/uvm_set_get_dap_base.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/dap/uvm_dap.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/dap/uvm_simple_lock_dap.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/dap/uvm_dap.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/dap/uvm_get_to_lock_dap.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/dap/uvm_dap.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/dap/uvm_set_before_get_dap.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/dap/uvm_dap.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_pkg.sv'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_tlm_ifs.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_sqr_ifs.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_port_base.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_tlm_imps.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_imps.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_ports.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_exports.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_analysis_port.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_tlm_fifo_base.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_tlm_fifos.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_tlm_req_rsp.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_tlm.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_sqr_connections.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm1/uvm_tlm.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_pkg.sv'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_comps.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_pair.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_comps.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_policies.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_comps.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_in_order_comparator.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_comps.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_algorithmic_comparator.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_comps.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_random_stimulus.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_comps.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_subscriber.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_comps.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_monitor.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_comps.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_driver.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_comps.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_push_driver.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_comps.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_scoreboard.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_comps.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_agent.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_comps.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_env.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_comps.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_test.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/comps/uvm_comps.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_pkg.sv'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/seq/uvm_seq.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/seq/uvm_sequence_item.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/seq/uvm_seq.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/seq/uvm_sequencer_base.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/seq/uvm_seq.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/seq/uvm_sequencer_analysis_fifo.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/seq/uvm_seq.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/seq/uvm_sequencer_param_base.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/seq/uvm_seq.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/seq/uvm_sequencer.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/seq/uvm_seq.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/seq/uvm_push_sequencer.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/seq/uvm_seq.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/seq/uvm_sequence_base.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/seq/uvm_seq.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/seq/uvm_sequence.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/seq/uvm_seq.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/seq/uvm_sequence_library.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/seq/uvm_seq.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/seq/uvm_sequence_builtin.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/seq/uvm_seq.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_pkg.sv'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm2/uvm_tlm2_defines.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm2/uvm_tlm2_time.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm2/uvm_tlm2_generic_payload.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm2/uvm_tlm2_ifs.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm2/uvm_tlm2_imps.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm2/uvm_tlm2_ports.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm2/uvm_tlm2_exports.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm2/uvm_tlm2_sockets_base.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm2/uvm_tlm2_sockets.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_pkg.sv'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_item.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_adapter.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_predictor.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_sequence.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_cbs.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_backdoor.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_field.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_vreg_field.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_indirect.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_fifo.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_file.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_mem_mam.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_vreg.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_mem.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_map.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_block.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/sequences/uvm_reg_hw_reset_seq.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/sequences/uvm_reg_bit_bash_seq.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/sequences/uvm_mem_walk_seq.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/sequences/uvm_mem_access_seq.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/sequences/uvm_reg_access_seq.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/sequences/uvm_reg_mem_shared_access_seq.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/sequences/uvm_reg_mem_built_in_seq.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/sequences/uvm_reg_mem_hdl_paths_seq.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/snps_uvm_reg_bank.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/reg/uvm_reg_model.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_pkg.sv'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/vcs/vcs_uvm_alt.sv'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_pkg.sv'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm.sv'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/vcs/snps_reg.svh'.
+Back to file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm.sv'.
+Parsing design file 'design.sv'
+Parsing design file 'testbench.sv'
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_macros.svh'.
+Back to file 'testbench.sv'.
+Parsing included file '/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/uvm_macros.svh'.
+Back to file 'testbench.sv'.
+Top Level Modules:
+       top
+TimeScale is 1 ns / 1 ns
+
+Warning-[INTFDV] VCD dumping of interface/program/package
+testbench.sv, 602
+  Selective VCD dumping of interface 'fifo_if' is not supported.  Selective 
+  VCD dumping for interfaces, packages and programs is not supported.
+  Use full VCD dumping '$dumpvars(0)', or use VPD or FSDB dumping, recompile 
+  with '-debug_access'.
+
+Starting vcs inline pass...
+7 modules and 0 UDP read.
+recompiling package vcs_paramclassrepository
+recompiling package _vcs_DPI_package
+recompiling package uvm_pkg
+recompiling module fifo
+recompiling module fifo_if
+recompiling package fifo_pkg
+recompiling module top
+All of 7 modules done
+rm -f _cuarc*.so _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
+/bin/sh: line 1: cmp: command not found
+g++ -w  -pipe -fPIC -DVCS -O -I/apps/vcsmx/vcs/X-2025.06-SP1/include     -c /apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/dpi/uvm_dpi.cc
+gcc  -w  -pipe -fPIC -DVCS -O -I/apps/vcsmx/vcs/X-2025.06-SP1/include    -fPIC -c -o uM9F1_0x2aB.o uM9F1_0x2aB.c
+if [ -x ../simv ]; then chmod a-x ../simv; fi
+g++  -o ../simv      -rdynamic  -Wl,-rpath='$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir -Wl,-rpath=/apps/vcsmx/vcs/X-2025.06-SP1/linux64/lib -L/apps/vcsmx/vcs/X-2025.06-SP1/linux64/lib  -Wl,-rpath-link=./  uvm_dpi.o   objs/amcQw_d.o  _346_archive_1.so  SIM_l.o   uM9F1_0x2aB.o   rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o            -lvirsim -lerrorinf -lsnpsmalloc -lvfs      -lvcsnew -ldistsimclient -lsimprofile -luclinative /apps/vcsmx/vcs/X-2025.06-SP1/linux64/lib/vcs_tls.o   -Wl,-whole-archive  -lvcsucli    -Wl,-no-whole-archive      ./../simv.daidir/vc_hdrs.o    /apps/vcsmx/vcs/X-2025.06-SP1/linux64/lib/vcs_save_restore_new.o -ldl  -lc -lm -lpthread -ldl 
+../simv up to date
+CPU time: 13.343 seconds to compile + .843 seconds to elab + 1.497 seconds to link
+Chronologic VCS simulator copyright 1991-2025
+Contains Synopsys proprietary information.
+Compiler version X-2025.06-SP1_Full64; Runtime version X-2025.06-SP1_Full64;  Oct 10 01:33 2026
+UVM_INFO /apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_root.svh(407) @ 0: reporter [UVM/RELNOTES] 
+----------------------------------------------------------------
+UVM-1.2.Synopsys
+(C) 2007-2014 Mentor Graphics Corporation
+(C) 2007-2014 Cadence Design Systems, Inc.
+(C) 2006-2014 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+(C) 2013-2014 NVIDIA Corporation
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO @ 0: reporter [RNTST] Running test fifo_full_rw_test...
+UVM_INFO testbench.sv(366) @ 6: uvm_test_top.env.sb [SB] cyc   1 | in: rst_n=0 wr=0 rd=0 wdata=00 | out: rd_data=00 rd_valid=0 full=0 empty=1 ovf=0 unf=0 | model size=0
+UVM_INFO testbench.sv(366) @ 16: uvm_test_top.env.sb [SB] cyc   2 | in: rst_n=0 wr=0 rd=0 wdata=00 | out: rd_data=00 rd_valid=0 full=0 empty=1 ovf=0 unf=0 | model size=0
+UVM_INFO testbench.sv(366) @ 26: uvm_test_top.env.sb [SB] cyc   3 | in: rst_n=0 wr=0 rd=0 wdata=00 | out: rd_data=00 rd_valid=0 full=0 empty=1 ovf=0 unf=0 | model size=0
+UVM_INFO testbench.sv(366) @ 36: uvm_test_top.env.sb [SB] cyc   4 | in: rst_n=0 wr=0 rd=0 wdata=00 | out: rd_data=00 rd_valid=0 full=0 empty=1 ovf=0 unf=0 | model size=0
+UVM_INFO testbench.sv(188) @ 40: uvm_test_top.env.agt.sqr@@seq [T5_SEQ] Step 1: fill with 16 distinct values (10..1F)
+UVM_INFO testbench.sv(366) @ 46: uvm_test_top.env.sb [SB] cyc   5 | in: rst_n=1 wr=0 rd=0 wdata=00 | out: rd_data=00 rd_valid=0 full=0 empty=1 ovf=0 unf=0 | model size=0
+UVM_INFO testbench.sv(366) @ 56: uvm_test_top.env.sb [SB] cyc   6 | in: rst_n=1 wr=1 rd=0 wdata=10 | out: rd_data=00 rd_valid=0 full=0 empty=0 ovf=0 unf=0 | model size=1
+UVM_INFO testbench.sv(366) @ 66: uvm_test_top.env.sb [SB] cyc   7 | in: rst_n=1 wr=1 rd=0 wdata=11 | out: rd_data=00 rd_valid=0 full=0 empty=0 ovf=0 unf=0 | model size=2
+UVM_INFO testbench.sv(366) @ 76: uvm_test_top.env.sb [SB] cyc   8 | in: rst_n=1 wr=1 rd=0 wdata=12 | out: rd_data=00 rd_valid=0 full=0 empty=0 ovf=0 unf=0 | model size=3
+UVM_INFO testbench.sv(366) @ 86: uvm_test_top.env.sb [SB] cyc   9 | in: rst_n=1 wr=1 rd=0 wdata=13 | out: rd_data=00 rd_valid=0 full=0 empty=0 ovf=0 unf=0 | model size=4
+UVM_INFO testbench.sv(366) @ 96: uvm_test_top.env.sb [SB] cyc  10 | in: rst_n=1 wr=1 rd=0 wdata=14 | out: rd_data=00 rd_valid=0 full=0 empty=0 ovf=0 unf=0 | model size=5
+UVM_INFO testbench.sv(366) @ 106: uvm_test_top.env.sb [SB] cyc  11 | in: rst_n=1 wr=1 rd=0 wdata=15 | out: rd_data=00 rd_valid=0 full=0 empty=0 ovf=0 unf=0 | model size=6
+UVM_INFO testbench.sv(366) @ 116: uvm_test_top.env.sb [SB] cyc  12 | in: rst_n=1 wr=1 rd=0 wdata=16 | out: rd_data=00 rd_valid=0 full=0 empty=0 ovf=0 unf=0 | model size=7
+UVM_INFO testbench.sv(366) @ 126: uvm_test_top.env.sb [SB] cyc  13 | in: rst_n=1 wr=1 rd=0 wdata=17 | out: rd_data=00 rd_valid=0 full=0 empty=0 ovf=0 unf=0 | model size=8
+UVM_INFO testbench.sv(366) @ 136: uvm_test_top.env.sb [SB] cyc  14 | in: rst_n=1 wr=1 rd=0 wdata=18 | out: rd_data=00 rd_valid=0 full=0 empty=0 ovf=0 unf=0 | model size=9
+UVM_INFO testbench.sv(366) @ 146: uvm_test_top.env.sb [SB] cyc  15 | in: rst_n=1 wr=1 rd=0 wdata=19 | out: rd_data=00 rd_valid=0 full=0 empty=0 ovf=0 unf=0 | model size=10
+UVM_INFO testbench.sv(366) @ 156: uvm_test_top.env.sb [SB] cyc  16 | in: rst_n=1 wr=1 rd=0 wdata=1a | out: rd_data=00 rd_valid=0 full=0 empty=0 ovf=0 unf=0 | model size=11
+UVM_INFO testbench.sv(366) @ 166: uvm_test_top.env.sb [SB] cyc  17 | in: rst_n=1 wr=1 rd=0 wdata=1b | out: rd_data=00 rd_valid=0 full=0 empty=0 ovf=0 unf=0 | model size=12
+UVM_INFO testbench.sv(366) @ 176: uvm_test_top.env.sb [SB] cyc  18 | in: rst_n=1 wr=1 rd=0 wdata=1c | out: rd_data=00 rd_valid=0 full=0 empty=0 ovf=0 unf=0 | model size=13
+UVM_INFO testbench.sv(366) @ 186: uvm_test_top.env.sb [SB] cyc  19 | in: rst_n=1 wr=1 rd=0 wdata=1d | out: rd_data=00 rd_valid=0 full=0 empty=0 ovf=0 unf=0 | model size=14
+UVM_INFO testbench.sv(366) @ 196: uvm_test_top.env.sb [SB] cyc  20 | in: rst_n=1 wr=1 rd=0 wdata=1e | out: rd_data=00 rd_valid=0 full=0 empty=0 ovf=0 unf=0 | model size=15
+UVM_INFO testbench.sv(192) @ 200: uvm_test_top.env.agt.sqr@@seq [T5_SEQ] Step 2: FULL, write AA and read in the same cycle
+UVM_INFO testbench.sv(366) @ 206: uvm_test_top.env.sb [SB] cyc  21 | in: rst_n=1 wr=1 rd=0 wdata=1f | out: rd_data=00 rd_valid=0 full=1 empty=0 ovf=0 unf=0 | model size=16
+UVM_INFO testbench.sv(195) @ 210: uvm_test_top.env.agt.sqr@@seq [T5_SEQ] Step 3: two idle cycles (junk on wr_data)
+UVM_INFO testbench.sv(366) @ 216: uvm_test_top.env.sb [SB] cyc  22 | in: rst_n=1 wr=1 rd=1 wdata=aa | out: rd_data=10 rd_valid=1 full=1 empty=0 ovf=0 unf=0 | model size=16
+UVM_INFO testbench.sv(366) @ 226: uvm_test_top.env.sb [SB] cyc  23 | in: rst_n=1 wr=0 rd=0 wdata=55 | out: rd_data=10 rd_valid=0 full=1 empty=0 ovf=0 unf=0 | model size=16
+UVM_INFO testbench.sv(198) @ 230: uvm_test_top.env.agt.sqr@@seq [T5_SEQ] Step 4: drain 16 reads
+UVM_INFO testbench.sv(366) @ 236: uvm_test_top.env.sb [SB] cyc  24 | in: rst_n=1 wr=0 rd=0 wdata=55 | out: rd_data=10 rd_valid=0 full=1 empty=0 ovf=0 unf=0 | model size=16
+UVM_INFO testbench.sv(366) @ 246: uvm_test_top.env.sb [SB] cyc  25 | in: rst_n=1 wr=0 rd=1 wdata=55 | out: rd_data=11 rd_valid=1 full=0 empty=0 ovf=0 unf=0 | model size=15
+UVM_INFO testbench.sv(366) @ 256: uvm_test_top.env.sb [SB] cyc  26 | in: rst_n=1 wr=0 rd=1 wdata=55 | out: rd_data=12 rd_valid=1 full=0 empty=0 ovf=0 unf=0 | model size=14
+UVM_INFO testbench.sv(366) @ 266: uvm_test_top.env.sb [SB] cyc  27 | in: rst_n=1 wr=0 rd=1 wdata=55 | out: rd_data=13 rd_valid=1 full=0 empty=0 ovf=0 unf=0 | model size=13
+UVM_INFO testbench.sv(366) @ 276: uvm_test_top.env.sb [SB] cyc  28 | in: rst_n=1 wr=0 rd=1 wdata=55 | out: rd_data=14 rd_valid=1 full=0 empty=0 ovf=0 unf=0 | model size=12
+UVM_INFO testbench.sv(366) @ 286: uvm_test_top.env.sb [SB] cyc  29 | in: rst_n=1 wr=0 rd=1 wdata=55 | out: rd_data=15 rd_valid=1 full=0 empty=0 ovf=0 unf=0 | model size=11
+UVM_INFO testbench.sv(366) @ 296: uvm_test_top.env.sb [SB] cyc  30 | in: rst_n=1 wr=0 rd=1 wdata=55 | out: rd_data=16 rd_valid=1 full=0 empty=0 ovf=0 unf=0 | model size=10
+UVM_INFO testbench.sv(366) @ 306: uvm_test_top.env.sb [SB] cyc  31 | in: rst_n=1 wr=0 rd=1 wdata=55 | out: rd_data=17 rd_valid=1 full=0 empty=0 ovf=0 unf=0 | model size=9
+UVM_INFO testbench.sv(366) @ 316: uvm_test_top.env.sb [SB] cyc  32 | in: rst_n=1 wr=0 rd=1 wdata=55 | out: rd_data=18 rd_valid=1 full=0 empty=0 ovf=0 unf=0 | model size=8
+UVM_INFO testbench.sv(366) @ 326: uvm_test_top.env.sb [SB] cyc  33 | in: rst_n=1 wr=0 rd=1 wdata=55 | out: rd_data=19 rd_valid=1 full=0 empty=0 ovf=0 unf=0 | model size=7
+UVM_INFO testbench.sv(366) @ 336: uvm_test_top.env.sb [SB] cyc  34 | in: rst_n=1 wr=0 rd=1 wdata=55 | out: rd_data=1a rd_valid=1 full=0 empty=0 ovf=0 unf=0 | model size=6
+UVM_INFO testbench.sv(366) @ 346: uvm_test_top.env.sb [SB] cyc  35 | in: rst_n=1 wr=0 rd=1 wdata=55 | out: rd_data=1b rd_valid=1 full=0 empty=0 ovf=0 unf=0 | model size=5
+UVM_INFO testbench.sv(366) @ 356: uvm_test_top.env.sb [SB] cyc  36 | in: rst_n=1 wr=0 rd=1 wdata=55 | out: rd_data=1c rd_valid=1 full=0 empty=0 ovf=0 unf=0 | model size=4
+UVM_INFO testbench.sv(366) @ 366: uvm_test_top.env.sb [SB] cyc  37 | in: rst_n=1 wr=0 rd=1 wdata=55 | out: rd_data=1d rd_valid=1 full=0 empty=0 ovf=0 unf=0 | model size=3
+UVM_INFO testbench.sv(366) @ 376: uvm_test_top.env.sb [SB] cyc  38 | in: rst_n=1 wr=0 rd=1 wdata=55 | out: rd_data=1e rd_valid=1 full=0 empty=0 ovf=0 unf=0 | model size=2
+UVM_INFO testbench.sv(366) @ 386: uvm_test_top.env.sb [SB] cyc  39 | in: rst_n=1 wr=0 rd=1 wdata=55 | out: rd_data=1f rd_valid=1 full=0 empty=0 ovf=0 unf=0 | model size=1
+UVM_INFO testbench.sv(366) @ 396: uvm_test_top.env.sb [SB] cyc  40 | in: rst_n=1 wr=0 rd=1 wdata=55 | out: rd_data=aa rd_valid=1 full=0 empty=1 ovf=0 unf=0 | model size=0
+UVM_INFO testbench.sv(366) @ 406: uvm_test_top.env.sb [SB] cyc  41 | in: rst_n=1 wr=0 rd=0 wdata=55 | out: rd_data=aa rd_valid=0 full=0 empty=1 ovf=0 unf=0 | model size=0
+UVM_INFO testbench.sv(366) @ 416: uvm_test_top.env.sb [SB] cyc  42 | in: rst_n=1 wr=0 rd=0 wdata=55 | out: rd_data=aa rd_valid=0 full=0 empty=1 ovf=0 unf=0 | model size=0
+UVM_INFO testbench.sv(366) @ 426: uvm_test_top.env.sb [SB] cyc  43 | in: rst_n=1 wr=0 rd=0 wdata=55 | out: rd_data=aa rd_valid=0 full=0 empty=1 ovf=0 unf=0 | model size=0
+UVM_INFO /apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_objection.svh(1276) @ 430: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO testbench.sv(478) @ 430: uvm_test_top.env.cov [COV] Functional coverage = 51.7%
+UVM_INFO testbench.sv(391) @ 430: uvm_test_top.env.sb [SB] *** TEST PASSED: 43 cycles checked, 0 mismatches ***
+UVM_INFO /apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_report_server.svh(904) @ 430: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :   52
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[COV]     1
+[RNTST]     1
+[SB]    44
+[T5_SEQ]     4
+[TEST_DONE]     1
+[UVM/RELNOTES]     1
+
+$finish called from file "/apps/vcsmx/vcs/X-2025.06-SP1//etc/uvm-1.2/src/base/uvm_root.svh", line 532.
+$finish at simulation time                  430
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 430 ns
+CPU Time:      0.770 seconds;       Data structure size:   0.3Mb
+Sat Oct 10 01:33:41 2026
+Done

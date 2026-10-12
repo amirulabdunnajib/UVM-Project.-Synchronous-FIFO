@@ -99,4 +99,16 @@ All decisions use the state before the clock edge. Outputs update after the edge
 
 ## Verification plan table
 
-(To be filled in by Amirul. Columns: Rule, Stimulus, Bug it targets, Checker, Coverage, Test.)
+| Rule | Stimulus | Bug it Targets | Checker | Coverage |
+|---|---|---|---|---|
+| **R1** | Fill, drain, then fill again past 16 total writes | Pointer does not wrap or FIFO order breaks | Scoreboard queue | Wrap-around hit |
+| **R2** | Write at empty, mid, and full levels, with and without read | Write wrongly blocked during full + read | `count` after clock edge | Level × operation cross |
+| **R3** | Read at empty, mid, and full levels | Read incorrectly accepted when FIFO is empty | `rd_data`, `count` | Level × operation cross |
+| **R4** | Write at full with no read | Data overwritten or `count` changes | `count == 16`, oldest data remains intact | Full × write |
+| **R6** | Read + write simultaneously at empty | Incorrect bypass behavior or write dropped | `count -> 1`, written data readable on next valid read | Empty × both |
+| **R7** | Read + write simultaneously at mid-level | `count` incorrectly increments or decrements | `count` remains unchanged | Mid × both |
+| **R8** | Perform every operation at every FIFO level | Incorrect `count` update logic | Reference `count` model | All 12 level × operation cells |
+| **R9** | Drive FIFO to both empty and full conditions | `full` and `empty` both asserted, or flags lag behind `count` | Compare `full` / `empty` against `count` | Flag bins |
+| **R10** | Perform a read, then idle while driving junk values on `wr_data` | `rd_data` clears or incorrectly follows input data | Verify `rd_data` holds previous non-zero read value | Idle after read |
+| **R12** | Perform a read, then idle, then attempt a read at empty | `rd_valid` stuck high or fails to assert | Verify `rd_valid` pulses for one cycle per accepted read | `rd_valid` bins |
+| **R13** | Write at full and read at empty; repeat each case with the opposite operation also asserted | `overflow` / `underflow` pulse missing, incorrect, or longer than one cycle | Verify `overflow` / `underflow` pulse for one cycle after ignored operation | Overflow / underflow condition bins |
